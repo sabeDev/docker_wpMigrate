@@ -1,0 +1,6 @@
+src.zip
+/db/data
+/db/initdb.d
+.env
+src/
+!/db/

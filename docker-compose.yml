@@ -1,0 +1,76 @@
+version: "3.7"
+services:
+  db:
+    container_name: db
+    image: mysql:8.0
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MYSQL_DATABASE=$MYSQL_DB
+    volumes: 
+      - ./db/data:/var/lib/mysql
+      - ./db/initdb.d:/docker-entrypoint-initdb.d
+    command: '--default-authentication-plugin=mysql_native_password'
+    networks:
+      - wp-network
+  wp:
+    depends_on: 
+      - db
+    container_name: wp
+    image: wordpress:5.1.1-fpm-alpine
+    # image: wordpress:php7.1
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=$MYSQL_USER
+      - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+      - WORDPRESS_DB_NAME=$MYSQL_DB
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - wp-network
+  fe:
+    depends_on:
+      - wp
+    container_name: fe
+    image: nginx:1.15.12-alpine
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      #-  ./nginx-conf:/etc/nginx/conf.d
+      - ./nginx-conf:/etc/nginx/conf.d
+      - ./src:/var/www/html
+    networks:
+      - wp-network
+  phpmyadmin:
+    depends_on: 
+      - db
+    container_name: phpadmin
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      - 3333:80
+    env_file: .env
+    environment:
+      - PMA_HOST=db:3306
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD 
+    #      - certbot-etc:/etc/letsencrypt
+    networks:
+      - wp-network
+
+     
+#  certbot:
+#    depends_on:
+#      - fe
+#    image: certbot/certbot
+#    container_name: certbot
+#    volumes:
+#      - certbot-etc:/etc/letsencrypt
+#      - wordpress:/var/www/html
+#    command: certonly --webroot --webroot-path=/var/www/html --email administrator@lucidusit.co.uk --agree-tos --no-eff-email --staging -d lucidusit.co.uk -d www.lucidusit.co.uk
+
+networks:
+  wp-network:
+    driver: bridge 
