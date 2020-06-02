@@ -8,9 +8,9 @@
 - FTP your site contents down 
 - Place the content into the `src` folder
 - Log into your mysql admin (on your website) and export your database as a SQL script
-- Place the SQL script in the 'initdb.d' folder
+- Place the SQL script in the `initdb.d` folder
 - Create the `.env` file
-- Alter the nginx-conf with your domain name
+- Alter the `nginx-conf` with your domain name
 
 ## Detailed Instructions
 1. Create the following folder structure:
@@ -46,9 +46,9 @@ MYSQL_DB=dbname
                 |--db.sql: a sql script to create your database
             |--data: empty folder for db files (actually this should get created automatically)
         |--src: source folder for wordpress files
-        |--.env: environment variables file
-        |--docker-compose.yml: the docker compose file
-        |--readme.md: this readme file   
+        .env: environment variables file
+        docker-compose.yml: the docker compose file
+        readme.md: this readme file   
 ```
 9. Change directory to your solution folder and enter: `docker-compsoe up -d`
 10. if something goes wrong, stop the container and clear the contents of the folder:
