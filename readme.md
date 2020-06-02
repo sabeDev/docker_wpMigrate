@@ -22,15 +22,14 @@
             |--data: empty folder for db files (actually this should get created automatically)
 
 ```
-So manually create folders:
+2. So manually create folders:
 * src
 * db/initdb.d
 
-Copy files into 'src' folder
-Generate your SQL script
-Copy SQL script into the 'initdb.d' folder
-
-Create an '.env' file at the root folder, with the contents similar to the below:
+3. Copy files into 'src' folder
+4. Generate your SQL script
+5. Copy SQL script into the 'initdb.d' folder
+6. Create an '.env' file at the root folder, with the contents similar to the below:
 ```
 MYSQL_ROOT_PASSWORD=myDBPassword
 MYSQL_USER=dbuser
