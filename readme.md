@@ -43,7 +43,7 @@ MYSQL_DB=dbname
 ----root 
         |--db: folder for db files
             |--initdb.d: folder for sql script to create db
-                |--db.sql: a sql script to create your database
+                db.sql: a sql script to create your database
             |--data: empty folder for db files (actually this should get created automatically)
         |--src: source folder for wordpress files
         .env: environment variables file
