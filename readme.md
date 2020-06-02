@@ -1,8 +1,18 @@
 # Migrate Wordpress site
 
-## Instructions
-Create the following folder structure:
- 
+
+
+
+## Overview of actions
+- Create the folder structure
+- FTP your site contents down 
+* Place the content into the src folder
+4. Log into your mysql admin (on your website) and export your database as a SQL script
+5. Place the SQL script in the initdb.d folder
+6. Create 
+
+## Detailed Instructions
+1. Create the following folder structure:
 ```
 ----root 
         |--src: source folder for wordpress files
@@ -12,21 +22,14 @@ Create the following folder structure:
             |--data: empty folder for db files (actually this should get created automatically)
 
 ```
-
-## Overview of actions
-1. FTP your site contents down 
-2. Place the content in the src folder
-3. Log into your mysql admin (on your website) and export your database as a SQL script
-4. Place the SQL script in the initdb.d folder
-5. Create 
-
-
-
 So manually create folders:
 * src
 * db/initdb.d
 
-Create an ENV file with the contents similar to the below:
+2. No detail for FTP 
+3. Copy files into 'src' folder
+
+6. Create an ENV file with the contents similar to the below:
 ```
 MYSQL_ROOT_PASSWORD=myDBPassword
 MYSQL_USER=dbuser
