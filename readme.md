@@ -38,6 +38,18 @@ MYSQL_PASSWORD=dbpassword
 MYSQL_DB=dbname
 ```
 7. Alter the line `server_name www.example.co.uk;` in the `nginx-conf/nginx.conf` to your domain name
-8. docker-compsoe up -d
-9. if something goes wrong, stop the container and clear the contents of the folder:
+8. The solution should now look like:
+```
+----root 
+        |--db: folder for db files
+            |--initdb.d: folder for sql script to create db
+                |--db.sql: a sql script to create your database
+            |--data: empty folder for db files (actually this should get created automatically)
+        |--src: source folder for wordpress files
+        |--.env: environment variables file
+        |--docker-compose.yml: the docker compose file
+        |--readme.md: this readme file   
+```
+9. Change directory to your solution folder and enter: `docker-compsoe up -d`
+10. if something goes wrong, stop the container and clear the contents of the folder:
 - db/data/
