@@ -5,11 +5,11 @@
 
 ## Overview of actions
 - Create the folder structure
-- FTP your site contents down 
-- Place the content into the `src` folder
+- FTP your wordpress site contents down 
+- Place the wordpress content into the `src` folder
 - Log into your mysql admin (on your website) and export your database as a SQL script
 - Place the SQL script in the `initdb.d` folder
-- Create the `.env` file
+- Create the `.env` file with your various credentials
 - Alter the `nginx-conf` with your domain name
 
 ## Detailed Instructions
